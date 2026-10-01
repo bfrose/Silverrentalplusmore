@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Rental Plus More - Luxury Tableware & Candelabra Rentals</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        silver: {
+                            50: '#f7f8f9',
+                            100: '#edf0f2',
+                            200: '#d5dbe0',
+                            300: '#b3bfc8',
+                            400: '#8c9ea9',
+                            500: '#6f8390',
+                            600: '#586975',
+                            700: '#47545e',
+                            800: '#3c454e',
+                            900: '#343b42',
+                            950: '#22272c',
+                        },
+                        platinum: '#e5e8eb',
+                        charcoal: '#1a1f24',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .silver-gradient {
+            background: linear-gradient(135deg, #f7f8f9 0%, #d5dbe0 50%, #8c9ea9 100%);
+        }
+        .text-silver-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #b3bfc8 50%, #6f8390 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .luxury-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .luxury-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-silver-50 text-charcoal font-sans antialiased selection:bg-silver-300 selection:text-charcoal">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-silver-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-charcoal text-silver-200 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-utensils text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-charcoal block">SILVER RENTAL</span>
+                    <span class="text-[10px] uppercase tracking-widest text-silver-600 font-semibold block -mt-1">Plus More · Dinner Parties & Galas</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-silver-700">
+                <a href="#catalog" class="hover:text-charcoal transition-colors">Rental Catalog</a>
+                <a href="#tablescapes" class="hover:text-charcoal transition-colors">Styled Tablescapes</a>
+                <a href="#process" class="hover:text-charcoal transition-colors">How It Works</a>
+                <a href="#reviews" class="hover:text-charcoal transition-colors">Reviews</a>
+                <a href="#faq" class="hover:text-charcoal transition-colors">FAQ</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-4">
+                <button onclick="openWishlistModal()" class="relative bg-silver-100 hover:bg-silver-200 text-charcoal px-4 py-2.5 rounded-full text-sm font-medium transition-all flex items-center space-x-2 border border-silver-300">
+                    <i class="fa-solid fa-bag-shopping text-silver-700"></i>
+                    <span class="hidden sm:inline">Wishlist Quote</span>
+                    <span id="wishlist-badge" class="bg-charcoal text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+                <a href="#catalog" class="hidden sm:inline-flex bg-charcoal hover:bg-silver-800 text-white px-5 py-2.5 rounded-full text-sm font-medium shadow-md transition-all">
+                    Browse Inventory
+                </a>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-charcoal p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-silver-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#catalog" onclick="toggleMobileMenu()" class="block text-sm font-medium text-silver-800 py-2 border-b border-silver-100">Rental Catalog</a>
+            <a href="#tablescapes" onclick="toggleMobileMenu()" class="block text-sm font-medium text-silver-800 py-2 border-b border-silver-100">Styled Tablescapes</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="block text-sm font-medium text-silver-800 py-2 border-b border-silver-100">How It Works</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block text-sm font-medium text-silver-800 py-2 border-b border-silver-100">Reviews</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block text-sm font-medium text-silver-800 py-2">FAQ</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-charcoal text-white overflow-hidden py-20 lg:py-32">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#8c9ea9_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <span class="inline-flex items-center space-x-2 bg-silver-800/80 text-silver-200 px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide uppercase border border-silver-700">
+                    <i class="fa-solid fa-gem text-silver-400"></i>
+                    <span>Premier Luxury Tableware & Decor Rentals</span>
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-serif font-bold tracking-tight text-white leading-tight">
+                    Elevate Every Gathering with <span class="text-silver-gradient italic">Exquisite Silver</span>
+                </h1>
+                <p class="text-lg text-silver-300 font-light max-w-xl leading-relaxed">
+                    Transform ordinary dinner parties and grand celebrations into unforgettable affairs. Rent heirloom-quality silver serving dishes, glistening candelabras, crystal stemware, and bespoke party decor.
+                </p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+                    <a href="#catalog" class="bg-silver-200 hover:bg-white text-charcoal px-8 py-4 rounded-full text-center font-semibold shadow-lg transition-all transform hover:-translate-y-0.5">
+                        Explore Catalog
+                    </a>
+                    <a href="#tablescapes" class="border border-silver-600 hover:border-silver-300 text-silver-200 hover:text-white px-8 py-4 rounded-full text-center font-semibold transition-all">
+                        View Tablescapes
+                    </a>
+                </div>
+                <!-- Stats Row -->
+                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-silver-800/80 text-silver-300">
+                    <div>
+                        <div class="text-2xl lg:text-3xl font-bold font-serif text-white">500+</div>
+                        <div class="text-xs text-silver-400 uppercase tracking-wider mt-1">Events Styled Yearly</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl lg:text-3xl font-bold font-serif text-white">100%</div>
+                        <div class="text-xs text-silver-400 uppercase tracking-wider mt-1">Polished Sterling & Silverplate</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl lg:text-3xl font-bold font-serif text-white">5.0 ★</div>
+                        <div class="text-xs text-silver-400 uppercase tracking-wider mt-1">Host & Event Planner Rating</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Hero Image / Visual Showcase -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-silver-800 bg-silver-900 group">
+                    <img id="hero-main-img" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=800" alt="Luxury Silver Dinner Party" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-silver-300 bg-charcoal/60 px-3 py-1 rounded-full backdrop-blur-sm">Featured Setting</span>
+                        <h2 class="text-xl font-serif font-bold mt-2">The Grand Victorian Banquet</h2>
+                        <p class="text-xs text-silver-300 mt-1">Complete with 5-arm candelabras, sterling platters & crystal stemware.</p>
+                    </div>
+                </div>
+                <!-- Floating Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-white text-charcoal p-4 rounded-xl shadow-xl border border-silver-200 hidden sm:flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-silver-100 rounded-full flex items-center justify-center text-charcoal">
+                        <i class="fa-solid fa-truck-fast text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold">Nationwide Delivery</div>
+                        <div class="text-xs text-silver-600">Arrives 2 days prior in custom crates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rental Catalog Section -->
+    <section id="catalog" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+            <span class="text-xs uppercase tracking-widest text-silver-600 font-bold bg-silver-200/60 px-3.5 py-1.5 rounded-full">Curated Collection</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal">Rental Inventory & Packages</h2>
+            <p class="text-silver-600">Select individual antique silver serving pieces or complete sets for your dinner party, wedding reception, or milestone celebration.</p>
+            
+            <!-- Instructions banner for adding photos -->
+            <div class="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-xl text-sm flex items-center justify-center space-x-2 text-left">
+                <i class="fa-solid fa-circle-info text-amber-600 flex-shrink-0 text-base"></i>
+                <span><strong>How to add your own photos:</strong> Click the <code class="bg-amber-100 px-1.5 py-0.5 rounded text-xs font-mono font-bold">"Change Image"</code> button on any product card below to instantly upload your own image file from your device or paste a direct image URL!</span>
+            </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10" id="filter-tabs">
+            <button onclick="filterCatalog('all')" class="catalog-tab active bg-charcoal text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm">All Items</button>
+            <button onclick="filterCatalog('serving')" class="catalog-tab bg-white text-silver-700 hover:bg-silver-100 px-5 py-2.5 rounded-full text-sm font-medium transition-all border border-silver-200">Serving Dishes</button>
+            <button onclick="filterCatalog('silverware')" class="catalog-tab bg-white text-silver-700 hover:bg-silver-100 px-5 py-2.5 rounded-full text-sm font-medium transition-all border border-silver-200">Silverware</button>
+            <button onclick="filterCatalog('candelabras')" class="catalog-tab bg-white text-silver-700 hover:bg-silver-100 px-5 py-2.5 rounded-full text-sm font-medium transition-all border border-silver-200">Candelabras</button>
+            <button onclick="filterCatalog('crystal')" class="catalog-tab bg-white text-silver-700 hover:bg-silver-100 px-5 py-2.5 rounded-full text-sm font-medium transition-all border border-silver-200">Crystal & Glass</button>
+            <button onclick="filterCatalog('decor')" class="catalog-tab bg-white text-silver-700 hover:bg-silver-100 px-5 py-2.5 rounded-full text-sm font-medium transition-all border border-silver-200">Party Decor</button>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product items will be dynamically rendered via JS -->
+        </div>
+    </section>
+
+    <!-- Styled Tablescapes Section -->
+    <section id="tablescapes" class="bg-silver-100 py-20 border-y border-silver-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-silver-600 font-bold bg-white px-3.5 py-1.5 rounded-full border border-silver-200">Inspiration & Design</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal">Styled Tablescapes</h2>
+                <p class="text-silver-600">Explore how our luxury silver rentals come together for intimate dinner parties, gala banquets, and seasonal celebrations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Tablescape Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md luxury-card border border-silver-200 flex flex-col">
+                    <div class="relative h-64 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800" alt="Formal Banquet Tablescape" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full">Formal Banquet</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-charcoal">The Victorian Silver Gala</h3>
+                            <p class="text-sm text-silver-600 mt-2">Featuring 5-arm ornate candelabras, antique silver platters, and heavy Georgian-style silverware set against deep velvet linens.</p>
+                        </div>
+                        <div class="pt-4 border-t border-silver-100 flex items-center justify-between">
+                            <span class="text-xs font-bold text-silver-700 uppercase tracking-wider">Curated Look</span>
+                            <button onclick="addPackageToWishlist('The Victorian Silver Gala', 450)" class="text-sm font-semibold text-charcoal hover:text-silver-600 flex items-center space-x-1">
+                                <span>Inquire Look</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tablescape Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md luxury-card border border-silver-200 flex flex-col">
+                    <div class="relative h-64 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" alt="Intimate Dinner Soiree" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full">Intimate Dinner</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-charcoal">Modern Silver & Crystal Soirée</h3>
+                            <p class="text-sm text-silver-600 mt-2">Clean-lined silver trays, slender taper silver candle holders, and European crystal stemware for chic metropolitan dining.</p>
+                        </div>
+                        <div class="pt-4 border-t border-silver-100 flex items-center justify-between">
+                            <span class="text-xs font-bold text-silver-700 uppercase tracking-wider">Curated Look</span>
+                            <button onclick="addPackageToWishlist('Modern Silver & Crystal Soirée', 320)" class="text-sm font-semibold text-charcoal hover:text-silver-600 flex items-center space-x-1">
+                                <span>Inquire Look</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tablescape Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md luxury-card border border-silver-200 flex flex-col">
+                    <div class="relative h-64 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800" alt="Holiday Feast" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-charcoal text-white text-xs font-semibold px-3 py-1 rounded-full">Holiday Celebration</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xl font-serif font-bold text-charcoal">The Grand Holiday Feast</h3>
+                            <p class="text-sm text-silver-600 mt-2">Elaborate silver turkey and roast platters, gravy boats with ladles, tiered pastry stands, and glowing hurricane lamps.</p>
+                        </div>
+                        <div class="pt-4 border-t border-silver-100 flex items-center justify-between">
+                            <span class="text-xs font-bold text-silver-700 uppercase tracking-wider">Curated Look</span>
+                            <button onclick="addPackageToWishlist('The Grand Holiday Feast', 380)" class="text-sm font-semibold text-charcoal hover:text-silver-600 flex items-center space-x-1">
+                                <span>Inquire Look</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="process" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-xs uppercase tracking-widest text-silver-600 font-bold bg-silver-200/60 px-3.5 py-1.5 rounded-full">Seamless Experience</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal">How Our Rental Process Works</h2>
+            <p class="text-silver-600">We make luxury table styling effortless from quote inquiry to post-event return.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="bg-white p-8 rounded-2xl border border-silver-200 shadow-sm relative text-center">
+                <div class="w-14 h-14 bg-charcoal text-white rounded-2xl flex items-center justify-center font-serif text-xl font-bold mx-auto mb-6 shadow-md">01</div>
+                <h3 class="text-lg font-bold text-charcoal mb-2">Select & Reserve</h3>
+                <p class="text-sm text-silver-600">Browse our catalog, choose your event dates, and add desired items or packages to your Wishlist Quote request.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-silver-200 shadow-sm relative text-center">
+                <div class="w-14 h-14 bg-charcoal text-white rounded-2xl flex items-center justify-center font-serif text-xl font-bold mx-auto mb-6 shadow-md">02</div>
+                <h3 class="text-lg font-bold text-charcoal mb-2">Quote & Confirmation</h3>
+                <p class="text-sm text-silver-600">Our concierge team reviews your date availability and sends a customized itemized quote within 24 hours.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-silver-200 shadow-sm relative text-center">
+                <div class="w-14 h-14 bg-charcoal text-white rounded-2xl flex items-center justify-center font-serif text-xl font-bold mx-auto mb-6 shadow-md">03</div>
+                <h3 class="text-lg font-bold text-charcoal mb-2">White-Glove Delivery</h3>
+                <p class="text-sm text-silver-600">Items arrive impeccably polished, securely packaged in custom crates, ready 2 days prior to your dinner party.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-silver-200 shadow-sm relative text-center">
+                <div class="w-14 h-14 bg-charcoal text-white rounded-2xl flex items-center justify-center font-serif text-xl font-bold mx-auto mb-6 shadow-md">04</div>
+                <h3 class="text-lg font-bold text-charcoal mb-2">Effortless Return</h3>
+                <p class="text-sm text-silver-600">No heavy washing required! Simply rinse food debris, place back in crates, and use our prepaid return shipping label.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="reviews" class="bg-charcoal text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-silver-300 font-bold bg-silver-800/80 px-3.5 py-1.5 rounded-full border border-silver-700">Testimonials</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Praise from Hosts & Planners</h2>
+                <p class="text-silver-300">Read what event creators have to say about our silver service quality and punctual delivery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-silver-900 border border-silver-800 p-8 rounded-2xl space-y-6 flex flex-col justify-between">
+                    <p class="text-silver-200 font-serif italic leading-relaxed">"The antique silver candelabras and matching platters completely transformed our charity gala dinner. Everything arrived sparkling clean and securely crated."</p>
+                    <div class="flex items-center space-x-4 pt-4 border-t border-silver-800">
+                        <div class="w-10 h-10 bg-silver-700 rounded-full flex items-center justify-center font-bold text-white">EV</div>
+                        <div>
+                            <div class="font-bold text-sm text-white">Eleanor Vance</div>
+                            <div class="text-xs text-silver-400">Luxury Event Producer, Chicago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-silver-900 border border-silver-800 p-8 rounded-2xl space-y-6 flex flex-col justify-between">
+                    <p class="text-silver-200 font-serif italic leading-relaxed">"Rented the 12-place silver cutlery set and crystal stemware for an anniversary dinner party. Our guests kept talking about how stunning the table looked!"</p>
+                    <div class="flex items-center space-x-4 pt-4 border-t border-silver-800">
+                        <div class="w-10 h-10 bg-silver-700 rounded-full flex items-center justify-center font-bold text-white">HS</div>
+                        <div>
+                            <div class="font-bold text-sm text-white">Dr. Harrison Sterling</div>
+                            <div class="text-xs text-silver-400">Private Host, Boston</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-silver-900 border border-silver-800 p-8 rounded-2xl space-y-6 flex flex-col justify-between">
+                    <p class="text-silver-200 font-serif italic leading-relaxed">"The booking inquiry system was so streamlined, and their customer service team even helped me calculate how many serving dishes we needed for 80 guests."</p>
+                    <div class="flex items-center space-x-4 pt-4 border-t border-silver-800">
+                        <div class="w-10 h-10 bg-silver-700 rounded-full flex items-center justify-center font-bold text-white">CD</div>
+                        <div>
+                            <div class="font-bold text-sm text-white">Claire Dupond</div>
+                            <div class="text-xs text-silver-400">Wedding & Party Host, New York</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 space-y-4">
+            <span class="text-xs uppercase tracking-widest text-silver-600 font-bold bg-silver-200/60 px-3.5 py-1.5 rounded-full">Got Questions?</span>
+            <h2 class="text-3xl font-serif font-bold text-charcoal">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white border border-silver-200 rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-charcoal text-lg mb-2">How do I clean the silver after my event?</h3>
+                <p class="text-silver-600 text-sm leading-relaxed">No silver polishing or heavy washing is required on your end! Simply rinse food debris with warm water and place the items back into our custom protective crates. We handle all professional sanitation and anti-tarnish polishing upon return.</p>
+            </div>
+            <div class="bg-white border border-silver-200 rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-charcoal text-lg mb-2">How far in advance should I reserve my items?</h3>
+                <p class="text-silver-600 text-sm leading-relaxed">We recommend booking your tableware and candelabras at least 4 to 6 weeks in advance for weekend dinner parties, and 3 to 6 months in advance for weddings and major holiday galas.</p>
+            </div>
+            <div class="bg-white border border-silver-200 rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-charcoal text-lg mb-2">What happens if an item is damaged or lost?</h3>
+                <p class="text-silver-600 text-sm leading-relaxed">A standard 10% refundable damage deposit is included with quotes. Minor accidental scratching is covered; however, lost or severely damaged pieces incur a predetermined replacement fee listed in your rental agreement.</p>
+            </div>
+            <div class="bg-white border border-silver-200 rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-charcoal text-lg mb-2">Do you offer shipping or local pickup?</h3>
+                <p class="text-silver-600 text-sm leading-relaxed">Yes! We provide fully insured nationwide express shipping in heavy-duty custom fitted crates with prepaid return labels. Local white-glove delivery and pickup is also available in select metropolitan areas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-silver-400 pt-16 pb-12 border-t border-silver-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4 md:col-span-1">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-silver-200 text-charcoal flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <span class="font-serif text-lg font-bold text-white tracking-tight">SILVER RENTAL</span>
+                </div>
+                <p class="text-xs text-silver-400 leading-relaxed">
+                    Curating luxury silver servingware, heirloom cutlery, candelabras, and party decor for unforgettable celebrations and exquisite tablescapes.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4 tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#catalog" class="hover:text-white transition-colors">Rental Catalog</a></li>
+                    <li><a href="#tablescapes" class="hover:text-white transition-colors">Tablescapes Gallery</a></li>
+                    <li><a href="#process" class="hover:text-white transition-colors">Rental Process</a></li>
+                    <li><a href="#reviews" class="hover:text-white transition-colors">Customer Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4 tracking-wider uppercase">Categories</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#catalog" onclick="filterCatalog('serving')" class="hover:text-white transition-colors">Silver Serving Dishes</a></li>
+                    <li><a href="#catalog" onclick="filterCatalog('silverware')" class="hover:text-white transition-colors">Cutlery & Silverware</a></li>
+                    <li><a href="#catalog" onclick="filterCatalog('candelabras')" class="hover:text-white transition-colors">Candelabras & Lighting</a></li>
+                    <li><a href="#catalog" onclick="filterCatalog('crystal')" class="hover:text-white transition-colors">Crystal & Glassware</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4 tracking-wider uppercase">Concierge & Studio</h4>
+                <ul class="space-y-2 text-xs">
+                    <li>Concierge: concierge@silverrentalplus.com</li>
+                    <li>Phone: +1 (800) 555-SILVER</li>
+                    <li>Showroom Hours: Mon - Fri: 9am - 6pm</li>
+                    <li class="text-silver-300 font-semibold pt-1">Nationwide Express Shipping Available</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-silver-800 flex flex-col sm:flex-row items-center justify-between text-xs text-silver-500">
+            <div>© 2026 Silver Rental Plus More. All rights reserved.</div>
+            <div class="flex space-x-6 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-silver-300 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-silver-300 transition-colors">Rental Terms</a>
+                <a href="#" class="hover:text-silver-300 transition-colors">Security Deposit FAQ</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Wishlist / Quote Modal -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 bg-charcoal/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeWishlistModal()" class="absolute top-6 right-6 text-silver-400 hover:text-charcoal text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-silver-100 rounded-full flex items-center justify-center text-charcoal">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-serif font-bold text-charcoal">Your Rental Inquiry Wishlist</h3>
+                    <p class="text-xs text-silver-600">Review selected items and request your concierge quote</p>
+                </div>
+            </div>
+
+            <!-- Wishlist Items Container -->
+            <div id="wishlist-items-container" class="divide-y divide-silver-100 max-h-60 overflow-y-auto pr-1">
+                <!-- Dynamic items -->
+            </div>
+
+            <div class="space-y-4 pt-4 border-t border-silver-200">
+                <div class="flex justify-between text-sm font-semibold text-charcoal">
+                    <span>Estimated Daily Subtotal:</span>
+                    <span id="wishlist-total">$0</span>
+                </div>
+
+                <!-- Event Details Form -->
+                <form id="quote-form" onsubmit="submitQuote(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-silver-700 uppercase mb-1">Event Date</label>
+                        <input type="date" required class="w-full px-4 py-2.5 rounded-xl border border-silver-300 text-sm focus:outline-none focus:border-charcoal">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-silver-700 uppercase mb-1">Your Name</label>
+                            <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-xl border border-silver-300 text-sm focus:outline-none focus:border-charcoal">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-silver-700 uppercase mb-1">Email Address</label>
+                            <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-2.5 rounded-xl border border-silver-300 text-sm focus:outline-none focus:border-charcoal">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-charcoal hover:bg-silver-800 text-white font-semibold py-3.5 rounded-xl text-sm transition-all shadow-md">
+                        Submit Quote Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Uploader / URL Editor Modal -->
+    <div id="image-modal" class="fixed inset-0 z-50 bg-charcoal/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+            <button onclick="closeImageModal()" class="absolute top-6 right-6 text-silver-400 hover:text-charcoal text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-800">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-serif font-bold text-charcoal">Update Item Photo</h3>
+                    <p class="text-xs text-silver-600">Choose your own photo file or paste an image URL</p>
+                </div>
+            </div>
+
+            <input type="hidden" id="edit-product-id">
+
+            <div class="space-y-4">
+                <!-- Option A: File Upload -->
+                <div>
+                    <label class="block text-xs font-semibold text-silver-700 uppercase mb-1.5">1. Upload Image from Your Device</label>
+                    <input type="file" id="image-file-input" accept="image/*" onchange="handleFileUpload(event)" class="w-full text-xs text-silver-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-silver-100 file:text-charcoal hover:file:bg-silver-200 cursor-pointer">
+                </div>
+
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-silver-200"></div>
+                    <span class="flex-shrink mx-4 text-xs text-silver-400 uppercase font-semibold">Or</span>
+                    <div class="flex-grow border-t border-silver-200"></div>
+                </div>
+
+                <!-- Option B: Direct URL -->
+                <div>
+                    <label class="block text-xs font-semibold text-silver-700 uppercase mb-1.5">2. Paste Direct Image URL</label>
+                    <input type="url" id="image-url-input" placeholder="https://example.com/my-silver-dish.jpg" class="w-full px-4 py-2.5 rounded-xl border border-silver-300 text-sm focus:outline-none focus:border-charcoal">
+                </div>
+
+                <button onclick="saveNewImage()" class="w-full bg-charcoal hover:bg-silver-800 text-white font-semibold py-3 rounded-xl text-sm transition-all shadow-md">
+                    Apply New Photo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-charcoal text-white px-6 py-3 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center space-x-3 text-sm">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toast-msg">Item added to wishlist!</span>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Catalog Products Data
+        const products = [
+            {
+                id: 1,
+                name: "Victorian 5-Arm Silver Candelabra",
+                category: "candelabras",
+                price: 45,
+                rating: 4.9,
+                reviews: 38,
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800",
+                description: "Exquisitely chased 5-arm silverplated candelabra standing 24 inches tall. Perfect for statement dinner table centerpieces, weddings, and formal banquets."
+            },
+            {
+                id: 2,
+                name: "Georgian Oval Silver Turkey & Roast Platter",
+                category: "serving",
+                price: 35,
+                rating: 5.0,
+                reviews: 24,
+                image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
+                description: "Grand 20-inch heavy silverplated meat and roast platter featuring ornate gadroon rims and subtle well-and-tree juice drainage channels."
+            },
+            {
+                id: 3,
+                name: "Heirloom 12-Piece Silver Cutlery Place Setting",
+                category: "silverware",
+                price: 18,
+                rating: 4.8,
+                reviews: 56,
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=800",
+                description: "Complete luxury silverplated setting including dinner knife, dinner fork, salad fork, soup spoon, and dessert spoon in classic King's pattern."
+            },
+            {
+                id: 4,
+                name: "Crystal & Silver Rim Champagne Bucket on Stand",
+                category: "crystal",
+                price: 60,
+                rating: 4.9,
+                reviews: 19,
+                image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=800",
+                description: "Stunning cut-crystal champagne cooler nestled in an ornate silverplated pedestal stand with lion-mask ring handles."
+            },
+            {
+                id: 5,
+                name: "Baroque Silver Gravy Boat with Attached Underplate",
+                category: "serving",
+                price: 22,
+                rating: 4.7,
+                reviews: 31,
+                image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&q=80&w=800",
+                description: "Elegant double-lipped gravy boat with scroll handle and fixed scenic underplate, ensuring drip-free pouring for sauces and jus."
+            },
+            {
+                id: 6,
+                name: "Etched Crystal Water Goblets (Set of 12)",
+                category: "crystal",
+                price: 28,
+                rating: 5.0,
+                reviews: 42,
+                image: "https://images.unsplash.com/photo-1527061011665-3652c757a4d4?auto=format&fit=crop&q=80&w=800",
+                description: "Ultra-clear lead-free crystal goblets adorned with delicate hand-etched silver leaf accents around the rim and bowl."
+            },
+            {
+                id: 7,
+                name: "Tiered Silver Pastry & Petit Four Stand",
+                category: "serving",
+                price: 40,
+                rating: 4.9,
+                reviews: 27,
+                image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800",
+                description: "3-tier filigree-edge silverplated serving stand designed for afternoon teas, dessert receptions, and cocktail canapés."
+            },
+            {
+                id: 8,
+                name: "Minimalist Silver Taper Candle Holders (Pair)",
+                category: "candelabras",
+                price: 20,
+                rating: 4.8,
+                reviews: 35,
+                image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&q=80&w=800",
+                description: "Sleek mid-century modern inspired heavy silver candlesticks with brushed mirror finish, perfect for intimate dining tables."
+            },
+            {
+                id: 9,
+                name: "Vintage Silver Ice Bucket with Tongs",
+                category: "decor",
+                price: 25,
+                rating: 4.9,
+                reviews: 15,
+                image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=800",
+                description: "Double-walled insulated silverplated ice bucket complete with swing handle and matching lion-claw ice tongs."
+            }
+        ];
+
+        let wishlist = [];
+
+        // Initialize Catalog on Load
+        window.onload = function() {
+            renderCatalog('all');
+        };
+
+        function renderCatalog(category) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-silver-200 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-60 overflow-hidden bg-silver-100 group">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/e5e8eb/3c454e?text=Silver+Rental+Plus'">
+                            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-charcoal px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                                $${product.price} / day
+                            </div>
+                            <div class="absolute top-3 right-3 flex items-center space-x-1 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-semibold text-charcoal">
+                                <i class="fa-solid fa-star text-amber-500 text-[10px]"></i>
+                                <span>${product.rating}</span>
+                                <span class="text-silver-400">(${product.reviews})</span>
+                            </div>
+                            <!-- Change Photo Button Overlay -->
+                            <button onclick="openImageModal(${product.id})" class="absolute bottom-3 right-3 bg-charcoal/90 hover:bg-charcoal text-white text-xs px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm transition-all flex items-center space-x-1.5 opacity-90 hover:opacity-100">
+                                <i class="fa-solid fa-camera text-xs"></i>
+                                <span>Change Photo</span>
+                            </button>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <div class="text-[11px] font-bold uppercase tracking-widest text-silver-500">${product.category}</div>
+                            <h3 class="font-serif font-bold text-lg text-charcoal leading-tight">${product.name}</h3>
+                            <p class="text-xs text-silver-600 line-clamp-2 leading-relaxed">${product.description}</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="addToWishlist(${product.id})" class="w-full bg-silver-100 hover:bg-charcoal hover:text-white text-charcoal font-semibold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center space-x-2 border border-silver-300">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                            <span>Add to Inquiry Wishlist</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCatalog(category) {
+            document.querySelectorAll('.catalog-tab').forEach(tab => {
+                tab.classList.remove('bg-charcoal', 'text-white', 'shadow-sm');
+                tab.classList.add('bg-white', 'text-silver-700', 'border', 'border-silver-200');
+            });
+            event.target.classList.remove('bg-white', 'text-silver-700', 'border', 'border-silver-200');
+            event.target.classList.add('bg-charcoal', 'text-white', 'shadow-sm');
+            renderCatalog(category);
+        }
+
+        // Image Uploader / Modal Functions
+        function openImageModal(productId) {
+            document.getElementById('edit-product-id').value = productId;
+            document.getElementById('image-url-input').value = '';
+            document.getElementById('image-file-input').value = '';
+            document.getElementById('image-modal').classList.remove('hidden');
+            document.getElementById('image-modal').classList.add('flex');
+        }
+
+        function closeImageModal() {
+            document.getElementById('image-modal').classList.remove('flex');
+            document.getElementById('image-modal').classList.add('hidden');
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('image-url-input').value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveNewImage() {
+            const productId = parseInt(document.getElementById('edit-product-id').value);
+            const newUrl = document.getElementById('image-url-input').value.trim();
+
+            if (!newUrl) {
+                showToast("Please upload an image or enter a valid URL.");
+                return;
+            }
+
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                product.image = newUrl;
+                // Check if this is the hero image being updated
+                if (productId === 1) {
+                    document.getElementById('hero-main-img').src = newUrl;
+                }
+                renderCatalog(document.querySelector('.catalog-tab.bg-charcoal')?.textContent.toLowerCase() || 'all');
+                closeImageModal();
+                showToast("Product image updated successfully!");
+            }
+        }
+
+        // Wishlist Functions
+        function addToWishlist(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product && !wishlist.some(item => item.id === productId)) {
+                wishlist.push(product);
+                updateWishlistBadge();
+                showToast(`Added "${product.name}" to wishlist`);
+            } else {
+                showToast("Item is already in your wishlist!");
+            }
+        }
+
+        function addPackageToWishlist(packageName, packagePrice) {
+            if (!wishlist.some(item => item.name === packageName)) {
+                wishlist.push({ id: 'pkg_' + Date.now(), name: packageName, price: packagePrice, category: 'tablescape package' });
+                updateWishlistBadge();
+                showToast(`Added "${packageName}" package to wishlist`);
+            } else {
+                showToast("Package is already in your wishlist!");
+            }
+        }
+
+        function updateWishlistBadge() {
+            document.getElementById('wishlist-badge').textContent = wishlist.length;
+        }
+
+        function openWishlistModal() {
+            const container = document.getElementById('wishlist-items-container');
+            container.innerHTML = '';
+
+            if (wishlist.length === 0) {
+                container.innerHTML = '<p class="text-xs text-silver-500 py-6 text-center">Your wishlist is currently empty. Browse the catalog to add items!</p>';
+                document.getElementById('wishlist-total').textContent = '$0';
+            } else {
+                let total = 0;
+                wishlist.forEach((item, index) => {
+                    total += item.price;
+                    const row = document.createElement('div');
+                    row.className = 'py-3 flex items-center justify-between text-sm';
+                    row.innerHTML = `
+                        <div>
+                            <div class="font-bold text-charcoal">${item.name}</div>
+                            <div class="text-xs text-silver-500">$${item.price} / day</div>
+                        </div>
+                        <button onclick="removeFromWishlist(${index})" class="text-rose-500 hover:text-rose-700 text-xs p-1">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    `;
+                    container.appendChild(row);
+                });
+                document.getElementById('wishlist-total').textContent = '$' + total;
+            }
+
+            document.getElementById('wishlist-modal').classList.remove('hidden');
+            document.getElementById('wishlist-modal').classList.add('flex');
+        }
+
+        function closeWishlistModal() {
+            document.getElementById('wishlist-modal').classList.remove('flex');
+            document.getElementById('wishlist-modal').classList.add('hidden');
+        }
+
+        function removeFromWishlist(index) {
+            wishlist.splice(index, 1);
+            updateWishlistBadge();
+            openWishlistModal();
+        }
+
+        function submitQuote(event) {
+            event.preventDefault();
+            if (wishlist.length === 0) {
+                showToast("Please add items to your wishlist first.");
+                return;
+            }
+            closeWishlistModal();
+            wishlist = [];
+            updateWishlistBadge();
+            showToast("Quote request submitted! Our concierge will email you within 24 hours.");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
